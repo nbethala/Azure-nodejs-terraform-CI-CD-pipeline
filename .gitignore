@@ -1,0 +1,17 @@
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# Node.js
+node_modules/
+.env
+
+# Logs
+*.log
+crash.log
+
+# Secrets
+scripts/azure-credentials.json
+infra/terraform.tfstate
+
