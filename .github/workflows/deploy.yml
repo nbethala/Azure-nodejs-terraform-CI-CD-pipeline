@@ -43,6 +43,12 @@ jobs:
         run: terraform init
         working-directory: infra_terraform
 
+      - name: Import existing resource group if needed
+        run: |
+           RG_NAME="rg-webapp-deploy"
+           RG_ID="/subscriptions/${{ secrets.ARM_SUBSCRIPTION_ID }}/resourceGroups/$RG_NAME"
+           terraform state list | grep "azurerm_resource_group.webapp_rg" || terraform import azurerm_resource_group.webapp_rg $RG_ID
+
       - name: Terraform Plan
         run: terraform plan
         working-directory: infra_terraform
