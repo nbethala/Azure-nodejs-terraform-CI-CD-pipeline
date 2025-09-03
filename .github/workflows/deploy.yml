@@ -24,9 +24,9 @@ jobs:
 
       - name: Debug Azure Env Vars
         run: |
-        echo "ARM_CLIENT_ID=$ARM_CLIENT_ID"
-        echo "ARM_TENANT_ID=$ARM_TENANT_ID"
-        echo "ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID"
+          echo "ARM_CLIENT_ID=$ARM_CLIENT_ID"
+          echo "ARM_TENANT_ID=$ARM_TENANT_ID"
+          echo "ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID"
 
       - name: Checkout code
         uses: actions/checkout@v3
@@ -36,17 +36,17 @@ jobs:
 
       - name: Verify Terraform Auth Variables
         run: |
-        echo "ARM_CLIENT_ID=$ARM_CLIENT_ID"
-        echo "ARM_TENANT_ID=$ARM_TENANT_ID"
-        echo "ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID"
+          echo "ARM_CLIENT_ID=$ARM_CLIENT_ID"
+          echo "ARM_TENANT_ID=$ARM_TENANT_ID"
+          echo "ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID"
 
       - name: Terraform Init
         run: terraform init
         working-directory: infra_terraform
 
-     - name: Terraform Plan
-       run: terraform plan
-       working-directory: infra_terraform
+      - name: Terraform Plan
+        run: terraform plan
+        working-directory: infra_terraform
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
@@ -69,4 +69,3 @@ jobs:
             --docker-registry-server-url https://${{ secrets.ACR_NAME }}.azurecr.io \
             --docker-registry-server-user ${{ secrets.ACR_USERNAME }} \
             --docker-registry-server-password ${{ secrets.ACR_PASSWORD }}
-
