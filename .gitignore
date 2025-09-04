@@ -2,6 +2,7 @@
 *.tfstate
 *.tfstate.backup
 .terraform/
+*.tfvars
 
 # Node.js
 node_modules/
@@ -14,5 +15,5 @@ crash.log
 # Secrets
 scripts/azure-credentials.json
 infra/terraform.tfstate
-infra/terraform.tfvars
+
 

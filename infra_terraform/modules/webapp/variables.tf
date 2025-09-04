@@ -14,3 +14,9 @@ variable "tags" {
     project = "webapp"
   }
 }
+variable "docker_registry_password" {
+  type      = string
+  sensitive = true
+  description = "Password for authenticating with Azure Container Registry"
+}
+
