@@ -14,4 +14,5 @@ crash.log
 # Secrets
 scripts/azure-credentials.json
 infra/terraform.tfstate
+infra/terraform.tfvars
 
