@@ -32,7 +32,6 @@ jobs:
           client-id: ${{ secrets.ARM_CLIENT_ID }}
           tenant-id: ${{ secrets.ARM_TENANT_ID }}
           subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-          client-secret: ${{ secrets.ARM_CLIENT_SECRET }}
           auth-type: SERVICE_PRINCIPAL
 
       - name: Set up Terraform
@@ -74,6 +73,7 @@ jobs:
                client-id: ${{ secrets.ARM_CLIENT_ID }}
                tenant-id: ${{ secrets.ARM_TENANT_ID }}
                subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+               client-secret: ${{ secrets.ARM_CLIENT_SECRET }}
                auth-type: SERVICE_PRINCIPAL
 
            - name: Debug Azure Env Vars
@@ -81,6 +81,10 @@ jobs:
               echo "ARM_CLIENT_ID=$ARM_CLIENT_ID"
               echo "ARM_TENANT_ID=$ARM_TENANT_ID"
               echo "ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID"
+             
+           - name: Debug Secrets
+             run: |
+              echo "Client Secret Length: ${#${{ secrets.ARM_CLIENT_SECRET }}}"
 
            - name: Checkout code
              uses: actions/checkout@v3
