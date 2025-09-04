@@ -74,10 +74,6 @@ jobs:
               echo "ARM_TENANT_ID=$ARM_TENANT_ID"
               echo "ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID"
              
-           - name: Debug Secrets
-             run: |
-              echo "Client Secret Length: ${#${{ secrets.ARM_CLIENT_SECRET }}}"
-
            - name: Checkout code
              uses: actions/checkout@v3
 
