@@ -44,11 +44,25 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Generate dev.tfvars
+        run: |
+         echo 'location = "${{ secrets.LOCATION }}"' > dev.tfvars
+         echo 'resource_group_name = "${{ secrets.RESOURCE_GROUP }}"' >> dev.tfvars
+         echo 'app_service_plan_name = "${{ secrets.APP_SERVICE_PLAN_NAME }}"' >> dev.tfvars
+         echo 'app_service_plan_sku = "${{ secrets.APP_SERVICE_PLAN_SKU }}"' >> dev.tfvars
+         echo 'web_app_name = "${{ secrets.WEBAPP_NAME }}"' >> dev.tfvars
+         echo 'acr_name = "${{ secrets.ACR_NAME }}"' >> dev.tfvars
+         echo 'docker_image_tag = "${{ secrets.DOCKER_IMAGE_TAG }}"' >> dev.tfvars
+         echo 'tags = { owner = "nancy", project = "webapp" }' >> dev.tfvars
+
       - name: Terraform Plan
-        run: terraform plan -var-file="terraform.tfvars"
+        run: terraform plan -var-file="dev.tfvars"
 
       - name: Terraform Apply
-        run: terraform apply -var-file="terraform.tfvars" --auto-approve
+        run: terraform apply -var-file="dev.tfvars" --auto-approve
         
    deploy:
          runs-on: ubuntu-latest
