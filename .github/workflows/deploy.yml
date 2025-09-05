@@ -44,8 +44,11 @@ jobs:
       - name: Terraform Init
         run: terraform init
         
+        env:
+         ACR_NAME: ${{ secrets.ACR_NAME }}
+
       - name: Terraform Plan
-        run: terraform plan
+        run: terraform plan -var="acr_name=$ACR_NAME"
         
       - name: Terraform Apply
         run: terraform apply -auto-approve
