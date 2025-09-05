@@ -43,15 +43,12 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        
-        env:
-         ACR_NAME: ${{ secrets.ACR_NAME }}
 
       - name: Terraform Plan
-        run: terraform plan -var="acr_name=$ACR_NAME"
-        
+        run: terraform plan -var-file="terraform.tfvars"
+
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform apply -var-file="terraform.tfvars" --auto-approve
         
    deploy:
          runs-on: ubuntu-latest
