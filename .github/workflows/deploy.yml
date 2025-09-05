@@ -45,10 +45,11 @@ jobs:
         run: terraform init
 
       - name: Check if Azure App Service Plan exists
+        env:
+         PLAN_NAME: nb-app-plan-dev
+         RG_NAME: ${{ secrets.RESOURCE_GROUP }}
         run: |
-          PLAN_NAME="nb-app-plan-dev"
-          RG_NAME="${{ secrets.RESOURCE_GROUP }}"
-          az appservice plan show --name $PLAN_NAME --resource-group $RG_NAME || echo "✅ Plan will be created by Terraform"
+         az appservice plan show --name "$PLAN_NAME" --resource-group "$RG_NAME" || echo "✅ Plan will be created by Terraform"
         
       - name: Import existing resource group if needed
         run: |
