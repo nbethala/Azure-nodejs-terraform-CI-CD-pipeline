@@ -3,7 +3,7 @@ variable "resource_group_name" {
 }
 
 variable "location" {
-  default = "eastus"
+  default = "Central US"
 }
 
 variable "app_service_plan_sku" {
