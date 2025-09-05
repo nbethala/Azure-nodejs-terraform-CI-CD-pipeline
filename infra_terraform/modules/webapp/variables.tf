@@ -6,7 +6,6 @@ variable "webapp_name" {}
 variable "docker_image" {}
 variable "docker_registry_url" {}
 variable "docker_registry_username" {}
-variable "docker_registry_password" {}
 variable "tags" {
   type = map(string)
   default = {
@@ -14,6 +13,7 @@ variable "tags" {
     project = "webapp"
   }
 }
+# Docker registry credentials for pulling container image
 variable "docker_registry_password" {
   type      = string
   sensitive = true
