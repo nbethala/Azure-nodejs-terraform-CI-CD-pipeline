@@ -7,8 +7,8 @@ resource "azurerm_app_service_plan" "webapp_plan" {
   reserved            = true
 
   sku {
-    tier = "Basic"
-    size = "B1"
+    tier = "Shared"
+    size = "D1"
   }
 
   tags = var.tags
