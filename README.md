@@ -57,7 +57,7 @@ This project deploys a containerized Node.js app to Azure using modular Terrafor
 
 ---
 
-## 📁 Project Structure
+## 📁 Project Structure - Copy another format -latest
 
 ├── app/ │ ├── Dockerfile │ ├── index.js │ └── package.json ├── terraform/ │ ├── main.tf │ ├── variables.tf │ └── outputs.tf ├── scripts/ │ └── create_sp.sh ├── .github/ │ └── workflows/ │ └── deploy.yml └── README.md
 
