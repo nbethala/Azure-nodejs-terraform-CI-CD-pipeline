@@ -33,9 +33,3 @@ module "webapp" {
   docker_registry_password  = var.docker_registry_password
   tags                      = var.tags
 }
-
-module "webapp" {
-  source = "../modules/webapp"
-
-  docker_registry_password = var.docker_registry_password
-}
