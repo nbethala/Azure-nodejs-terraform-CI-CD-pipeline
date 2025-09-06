@@ -48,7 +48,7 @@ This project demonstrates end-to-end cloud deployment using Azure App Services, 
 - **Testing**: Unit tests triggered on every commit  
 - **Infrastructure as Code**: Azure CLI scripts (Terraform optional)
 
----
+
 
 ## 📁 Project Structure
 
@@ -79,7 +79,6 @@ project-root/
 ├── README.md                  # Project overview and documentation
 └── .gitignore                 # Git exclusions
 
----
 
 ## **CI/CD Pipeline Overview**
 On every push to main, GitHub Actions orchestrates automated deployment with the following steps:
