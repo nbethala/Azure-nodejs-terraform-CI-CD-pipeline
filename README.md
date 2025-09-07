@@ -80,6 +80,7 @@ project-root/
 └── .gitignore                 # Git exclusions
 
 
+
 ## **CI/CD Pipeline Overview**
 On every push to main, GitHub Actions orchestrates automated deployment with the following steps:
 
@@ -91,6 +92,7 @@ ACR Authentication – Authenticates securely with Azure Container Registry
 
 Image Push – Publishes the built image to ACR for deployment
 
+
 ## **Cleanup**
 To avoid ongoing Azure charges, you can tear down all provisioned resources by destroying the resource group:
 
@@ -98,7 +100,8 @@ terraform destroy
 
 ⚠️ This will delete all resources managed by Terraform, including the App Service, ACR, and networking components. Ensure you've backed up any critical data before running this command.
 
-# **Cloud-Native Delivery**
+
+## **Cloud-Native Delivery**
 
 ✅ Real Web Application – Built with Node.js and containerized for portability
 ✅ Automated CI/CD – GitHub Actions pipeline triggered on every push to main 
@@ -114,6 +117,15 @@ Role-based access via Azure service principal
 Environment variables managed via .env template
 
 CI/CD secrets stored securely in GitHub repository settings
+
+
+## **Key Roadblocks & Recovery**
+
+- Azure quota blocked App Service Plan deployment
+- Terraform state drift from manual resource creation 
+- ACR and GitHub secrets misconfigured, breaking CI/CD
+- YAML workflow lacked Docker login and variable injection
+- Region limits and provider registration caused failures
 
 
   
