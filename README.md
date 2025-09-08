@@ -4,19 +4,18 @@ This project demonstrates end-to-end cloud deployment using Azure App Services, 
 ## Why This Project?
   This project showcases a modern, cloud-native deployment pipeline with automation, reproducibility, and observability at its core:
 
-- **🔁 Continuous Integration & Deployment**: Automatically tests and deploys on every code push using GitHub Actions.
+- **Continuous Integration & Deployment**: Automatically tests and deploys on every code push using GitHub Actions.
 
-- **🐳 Containerization**: Docker-based setup ensures consistent environments across dev, test, and production.
+- **Containerization**: Docker-based setup ensures consistent environments across dev, test, and production.
 
-- **☁️ Cloud Deployment**: Finalized deployment using Azure App Services, with scripted CI/CD workflows via GitHub Actions.
+- **Cloud Deployment**: Finalized deployment using Azure App Services, with scripted CI/CD workflows via GitHub Actions.
 
-- **🧪 Automated Testing**: Unit tests triggered on every commit to maintain code quality and reliability. 
+- **Automated Testing**: Unit tests triggered on every commit to maintain code quality and reliability. 
   
-- **📊 Health Monitoring**: Built-in health checks and metrics for proactive system visibility. 
+- **Health Monitoring**: Built-in health checks and metrics for proactive system visibility. 
   
-- **📜 Infrastructure as Code**: Azure resources provisioned and managed via modular Terraform configurations.
-                                 Service principal lifecycle automated through secure shell scripts for streamlined authentication and access control.
-
+- **Infrastructure as Code**: Azure resources provisioned and managed via modular Terraform configurations.
+                                 Service principal lifecycle automated through secure shell scripts for streamlined    i  authentication and access control.
 
 
 ## Architecture
@@ -28,11 +27,11 @@ This project demonstrates end-to-end cloud deployment using Azure App Services, 
 
 
 
-## Prerequisites & Tech Stack
+## Pre-requisites & Tech Stack
 
     To run, deploy, or extend this project, you'll need the following tools and technologies:
 
-### 🔧 Prerequisites
+### 🔧 Pre-requisites
 - **Docker** – For local containerization and testing
 - **Azure CLI** – To manage Azure resources and automate deployments
 - **Git** – Version control and CI/CD integration
@@ -52,7 +51,8 @@ This project demonstrates end-to-end cloud deployment using Azure App Services, 
 
 ## 📁 Project Structure
 
-```plaintext
+
+```text
 project-root/
 ├── infra_terraform/           # Infrastructure as Code
 │   ├── main.tf                # Core Terraform config
@@ -78,10 +78,11 @@ project-root/
 ├── architecture.png           # Visual diagram of infrastructure
 ├── README.md                  # Project overview and documentation
 └── .gitignore                 # Git exclusions
+```
 
 
 
-## **CI/CD Pipeline Overview**
+## CI/CD Pipeline Overview
 On every push to main, GitHub Actions orchestrates automated deployment with the following steps:
 
 Code Checkout – Retrieves the latest source from the repository
@@ -93,7 +94,7 @@ ACR Authentication – Authenticates securely with Azure Container Registry
 Image Push – Publishes the built image to ACR for deployment
 
 
-## **Cleanup**
+## Cleanup
 To avoid ongoing Azure charges, you can tear down all provisioned resources by destroying the resource group:
 
 terraform destroy
@@ -101,16 +102,22 @@ terraform destroy
 ⚠️ This will delete all resources managed by Terraform, including the App Service, ACR, and networking components. Ensure you've backed up any critical data before running this command.
 
 
-## **Cloud-Native Delivery**
+## Cloud-Native Delivery
 
 ✅ Real Web Application – Built with Node.js and containerized for portability
+
 ✅ Automated CI/CD – GitHub Actions pipeline triggered on every push to main 
+
 ✅ Container Deployment – Dockerized workflow for consistent builds 
+
 ✅ Cloud Hosting – Deployed to Azure App Services with scripted provisioning 
+
 ✅ Live Production URL – Shareable endpoint for stakeholders 
+
 ✅ Continuous Delivery – Automatic updates with every code commit
 
-## **Security Highlights**
+
+## Security Highlights
 
 Role-based access via Azure service principal
 
@@ -119,13 +126,40 @@ Environment variables managed via .env template
 CI/CD secrets stored securely in GitHub repository settings
 
 
-## **Key Roadblocks & Recovery**
 
-- Azure quota blocked App Service Plan deployment
-- Terraform state drift from manual resource creation 
-- ACR and GitHub secrets misconfigured, breaking CI/CD
-- YAML workflow lacked Docker login and variable injection
-- Region limits and provider registration caused failures
+## Key Roadblocks & Troubleshooting
+
+- **Azure quota blocked App Service Plan deployment**  
+  Pivoted to Azure Container Instances after diagnosing quota exhaustion, enabling cost-free deployment and preserving CI/CD flow.
+
+- **Terraform state drift from manual resource creation**  
+  Identified drift via `terraform plan`, reconciled state with `terraform import`, and refactored modules to prevent future manual overrides.
+
+- **ACR and GitHub secrets misconfigured, breaking CI/CD**  
+  Audited secret scopes and permissions, restructured GitHub Actions to securely inject ACR credentials and restore pipeline integrity.
+
+- **YAML workflow lacked Docker login and variable injection**  
+  Added `docker login` and dynamic environment variables to the workflow, enabling seamless image push and deployment.
+
+- **Docker issues**  
+  Resolved build and tag inconsistencies by standardizing Dockerfile syntax, pruning local images, and validating multi-stage builds.
+
+- **Region limits and provider registration caused failures**  
+  Registered missing Azure providers and shifted deployment to a quota-friendly region, restoring Terraform provisioning.
+
+- **Missing or mis-scoped Azure credentials**  
+   Service principal token not properly injected, causing `az login` or Terraform provider authentication failures.
+
+- **Missing `terraform init` or backend configuration**  
+   Workflow skips backend initialization, leading to local state usage and potential state file conflicts.
+
+- **Missing `.tfvars` or variable files**  
+   YAML doesn’t pass required inputs, resulting in Terraform errors about undefined or missing variables.
+
+- **Container crashes or silent exits**  
+    Use `docker logs`, `docker inspect`, and `docker top` to debug runtime behavior and entrypoint issues.
+
+
 
 
   
