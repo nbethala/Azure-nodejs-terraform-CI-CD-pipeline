@@ -97,7 +97,8 @@ Image Push – Publishes the built image to ACR for deployment
 ## Cleanup
 To avoid ongoing Azure charges, you can tear down all provisioned resources by destroying the resource group:
 
-terraform destroy
+```bash
+**terraform destroy**
 
 ⚠️ This will delete all resources managed by Terraform, including the App Service, ACR, and networking components. Ensure you've backed up any critical data before running this command.
 
